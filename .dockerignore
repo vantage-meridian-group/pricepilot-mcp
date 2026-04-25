@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.git/
+.gitignore
+.venv/
+venv/
+.env
+.env.local
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+*.db
+*.sqlite
+.idea/
+.vscode/
+README.md

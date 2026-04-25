@@ -1,0 +1,52 @@
+[project]
+name = "pricepilot-mcp"
+version = "1.0.0"
+description = "MCP server for cross-channel CPG pricing intelligence — Amazon category benchmarks (percentile rank, trend, tier breakdown) for multi-channel CPG brands selling on Amazon plus retail / DTC / wholesale. Six tools over 800+ tracked products across Grocery, Health & Beauty, Household, and Pet Supplies. Free alternative to NielsenIQ / SPINS."
+readme = "README.md"
+requires-python = ">=3.13"
+license = {text = "MIT"}
+authors = [
+    {name = "Vantage Meridian Group LLC", email = "support@vantagemeridiangroup.com"},
+]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "pricing",
+    "cpg",
+    "consumer-packaged-goods",
+    "amazon",
+    "competitive-intelligence",
+    "pricing-analytics",
+    "retail",
+    "wholesale",
+    "multi-channel",
+    "e-commerce",
+    "brand-pricing",
+    "category-benchmarks",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Other Audience",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business",
+    "Topic :: Office/Business :: Financial",
+]
+
+[project.urls]
+Homepage = "https://pricepilot.vantagemeridiangroup.com"
+Repository = "https://github.com/vantage-meridian-group/pricepilot-mcp"
+Issues = "https://github.com/vantage-meridian-group/pricepilot-mcp/issues"
+
+[project.scripts]
+pricepilot-mcp = "pricepilot_mcp.server:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["pricepilot_mcp*"]

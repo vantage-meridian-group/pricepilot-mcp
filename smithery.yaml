@@ -1,0 +1,17 @@
+runtime: "container"
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
+startCommand:
+  type: "http"
+  path: "/mcp"
+  configSchema:
+    type: "object"
+    required:
+      - database_url
+    properties:
+      database_url:
+        type: "string"
+        title: "Database URL"
+        description: "PostgreSQL connection string for category benchmark data"
+  exampleConfig: {}
