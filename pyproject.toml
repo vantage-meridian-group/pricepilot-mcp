@@ -8,6 +8,13 @@ license = {text = "MIT"}
 authors = [
     {name = "Vantage Meridian Group LLC", email = "support@vantagemeridiangroup.com"},
 ]
+dependencies = [
+    "mcp[cli]>=1.2.0",
+    "sqlalchemy>=2.0.0",
+    "psycopg[binary]>=3.1.0",
+    "starlette>=0.37.0",
+    "uvicorn>=0.30.0",
+]
 keywords = [
     "mcp",
     "model-context-protocol",
