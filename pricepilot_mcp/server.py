@@ -1,7 +1,7 @@
 """PricePilot MCP Server — free CPG pricing intelligence for AI assistants.
 
 Exposes derived pricing statistics (percentile rank, trend, price index)
-from weekly Amazon category scans. Never exposes raw Keepa prices.
+from a point-in-time Amazon category snapshot. Never exposes raw Keepa prices.
 
 Run via: python -m pricepilot_mcp
 """
@@ -35,8 +35,8 @@ from .models import CategoryBenchmark, CategoryTrendCache
 # ---------------------------------------------------------------------------
 
 CTA = (
-    "For a full per-SKU pricing report with actionable recommendations, "
-    "visit app.pricepilot.vantagemeridiangroup.com"
+    "Free, point-in-time Amazon category data from PricePilot "
+    "(Vantage Meridian Group). See 'last_refreshed' for the snapshot date."
 )
 SERVER_VERSION = "1.0.0"
 STALE_THRESHOLD_DAYS = 10
@@ -71,12 +71,12 @@ def _check_rate_limit(consumer: str = "default") -> str | None:
     if len(_rate_minute[consumer]) >= RATE_LIMIT_RPM:
         return (
             f"Rate limit reached ({RATE_LIMIT_RPM} requests/minute). "
-            f"For unlimited access to pricing intelligence, {CTA}"
+            "Please retry shortly."
         )
     if len(_rate_day[consumer]) >= RATE_LIMIT_RPD:
         return (
             f"Daily rate limit reached ({RATE_LIMIT_RPD} requests/day). "
-            f"For unlimited access, {CTA}"
+            "Please retry tomorrow."
         )
 
     _rate_minute[consumer].append(now)
@@ -165,7 +165,7 @@ SERVER_INSTRUCTIONS = (
     "or falling? How do my SKUs stack against the shelf? What's the tier "
     "structure — budget / midmarket / premium? "
     "Covers Grocery, Health & Beauty, Household, and Pet Supplies with "
-    "weekly Amazon Buy Box data. "
+    "a point-in-time Amazon Buy Box snapshot. "
     "Free alternative to NielsenIQ / SPINS syndicated data."
 )
 
@@ -250,7 +250,7 @@ def get_price_position(price: float, category: str) -> dict:
         position (Value / Parity / Premium),
         category (resolved name),
         last_refreshed (ISO timestamp),
-        cta (link to full per-SKU report).
+        cta (provenance note).
 
     Args:
         price: Product price in dollars (e.g. 4.99). Must be > 0 and <= 10000.
@@ -340,7 +340,7 @@ def get_category_trend(category: str) -> dict:
         return {
             "trend_direction": trend["trend_direction"],
             "trend_window": "30 days",
-            "confidence": f"Based on {trend['product_count']} products tracked weekly",
+            "confidence": f"Based on {trend['product_count']} products in the snapshot",
             "category": cat_name,
             "last_refreshed": trend["computed_at"] or _get_last_refreshed(db, cat_id),
             "cta": CTA,
@@ -546,9 +546,8 @@ def list_categories() -> dict:
         return {
             "categories": categories,
             "note": (
-                f"PricePilot tracks pricing across {len(SEED_CATEGORIES)} Amazon root "
-                f"categories, refreshed weekly. Full per-SKU analysis available at "
-                f"app.pricepilot.vantagemeridiangroup.com"
+                f"PricePilot covers {len(SEED_CATEGORIES)} Amazon root categories "
+                f"as a point-in-time snapshot. See 'last_refreshed' for the snapshot date."
             ),
             "cta": CTA,
         }
