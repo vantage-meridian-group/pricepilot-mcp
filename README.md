@@ -1,6 +1,6 @@
 # PricePilot MCP Server
 
-Free Amazon pricing intelligence for multi-channel CPG brands, exposed as a Model Context Protocol server. Six read-only tools over weekly Buy Box scans across Grocery, Health & Beauty, Household, and Pet Supplies.
+Free Amazon pricing intelligence for multi-channel CPG brands, exposed as a Model Context Protocol server. Six read-only tools over a point-in-time Amazon Buy Box snapshot across Grocery, Health & Beauty, Household, and Pet Supplies.
 
 A free alternative to NielsenIQ / SPINS syndicated category data — accessible from any MCP client (Claude Desktop, Claude.ai, Cursor, Continue, agent frameworks).
 
@@ -57,7 +57,7 @@ All tools are `readOnlyHint=true`, `destructiveHint=false`, `openWorldHint=false
 
 ## Categories
 
-Refreshed weekly from Amazon Buy Box scans:
+A point-in-time snapshot from Amazon Buy Box scans (see `server_status` for the snapshot date):
 
 - Grocery & Gourmet Food
 - Health & Beauty
@@ -80,7 +80,7 @@ docker run -p 8081:8081 -e DATABASE_URL=postgresql://... pricepilot-mcp
 
 ## Operator note
 
-The MCP server is the free, category-level surface of PricePilot. Per-SKU pricing recommendations (R1 price-alignment is live; R2 / R3 / R5 expanding through Q2) are delivered via the paid platform at https://app.pricepilot.vantagemeridiangroup.com.
+The MCP server is a free, category-level, point-in-time snapshot of PricePilot data. The paid per-SKU analysis platform is not currently available. More about the team at https://vantagemeridiangroup.com.
 
 ## License
 
