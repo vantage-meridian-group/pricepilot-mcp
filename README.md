@@ -1,5 +1,7 @@
 # PricePilot MCP Server
 
+> **Status: retired (2026).** PricePilot ran as a live, public MCP server. It was listed in Anthropic's MCP directory, on Glama and Smithery, and in several other MCP directories, and all six tools were tested in real use. The hosted server and the Claude Desktop extension have since been retired, so the connection steps below will no longer work. The code stays public as a reference build; to run it yourself, use the local setup steps with your own database.
+
 Free Amazon pricing intelligence for multi-channel CPG brands, exposed as a Model Context Protocol server. Six read-only tools over a point-in-time Amazon Buy Box snapshot across Grocery, Health & Beauty, Household, and Pet Supplies.
 
 A free alternative to NielsenIQ / SPINS syndicated category data — accessible from any MCP client (Claude Desktop, Claude.ai, Cursor, Continue, agent frameworks).
@@ -17,7 +19,7 @@ The server returns derived statistics only — percentile rank, Price Index, tre
 
 ## Connect
 
-### Hosted endpoint (no install)
+### Hosted endpoint (retired)
 
 ```json
 {
@@ -31,7 +33,7 @@ The server returns derived statistics only — percentile rank, Price Index, tre
 
 No API key. Rate limited to 60 requests/minute, 1000/day.
 
-### Claude Desktop (one-click, recommended)
+### Claude Desktop extension (retired)
 
 Use the official `.mcpb` extension at https://github.com/vantage-meridian-group/pricepilot-mcpb/releases/latest — drag-and-drop into Claude Desktop.
 
